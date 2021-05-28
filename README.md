@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# NGUYEN_VAN_TAN_TEST_FE
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -18,6 +18,14 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn lint`
+
+Inspect your source code with ESLint.
+
+### `yarn format`
+
+Inspect your source code with Prettier.
 
 ### `yarn build`
 
