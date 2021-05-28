@@ -1,0 +1,36 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+img {
+  vertical-align: middle;
+}
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+::selection {
+  background: #0031a2;
+  color: #fff;
+}
