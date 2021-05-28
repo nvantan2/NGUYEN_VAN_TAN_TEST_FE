@@ -22,6 +22,14 @@ Inspect your source code with ESLint.
 
 Inspect your source code with Prettier.
 
+### `yarn lint`
+
+Inspect your source code with ESLint.
+
+### `yarn format`
+
+Inspect your source code with Prettier.
+
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
