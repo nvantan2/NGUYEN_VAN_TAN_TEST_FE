@@ -4,3 +4,4 @@ setupTests.ts
 *.png
 *.jpg
 *.ttf
+*.svg
