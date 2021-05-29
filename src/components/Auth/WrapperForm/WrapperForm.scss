@@ -86,6 +86,9 @@ $error-color: #e63946;
       display: flex;
       align-items: center;
       justify-content: center;
+      &:disabled {
+        cursor: not-allowed;
+      }
 
       &--submit {
         background-color: #248afd;

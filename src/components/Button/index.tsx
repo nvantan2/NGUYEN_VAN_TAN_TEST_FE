@@ -8,7 +8,7 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<IButtonProps> = ({ isLoading, children, ...props }) => {
   return (
     <button {...props} disabled={isLoading}>
-      {isLoading && <Loader color="#fff" size="lg" />}
+      {isLoading && <Loader color="#fff" size="sm" />}
       {children}
     </button>
   );

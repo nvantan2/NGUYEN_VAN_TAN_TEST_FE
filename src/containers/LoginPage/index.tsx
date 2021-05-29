@@ -1,39 +1,67 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React, { useState } from 'react';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import HeaderFormAuth from '../../components/Auth/HeaderForm';
 import Button from '../../components/Button';
 import { ReactComponent as LogoFb } from '../../assets/images/facebook-logo.svg';
+import authApi, { IDataLogin } from '../../api/authAPi';
 
 const LogInSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  username: Yup.string().required('User name is required'),
   password: Yup.string().required('Password is required'),
 });
 
 const LoginPage: React.FC = () => {
-  const handleSubmit = () => {};
+  const history = useHistory();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [messageError, setMessageError] = useState<string>('');
+
+  const handleSubmit = async (values: IDataLogin, actions: FormikHelpers<IDataLogin>) => {
+    try {
+      setLoading(true);
+      const response = await authApi.login({ username: values.username, password: values.password });
+      if (response.data) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        localStorage.setItem('access_token', response.data.token);
+        actions.resetForm();
+        history.push('/');
+      }
+      setLoading(false);
+      setMessageError('Invalid username or password.');
+    } catch (error) {
+      console.log(error);
+      setMessageError('Sorry, something went wrong. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const initialValues: IDataLogin = { username: '', password: '' };
+
   return (
     <div>
       <HeaderFormAuth title="Hello! let's get started" description="Sign in to continue" />
 
+      {messageError && <p className="auth-form-group__message-error">{messageError}</p>}
       <Formik
-        initialValues={{ email: '', password: '' }}
+        initialValues={initialValues}
         enableReinitialize
         validationSchema={LogInSchema}
-        onSubmit={handleSubmit}>
+        onSubmit={(values, actions) => handleSubmit(values, actions)}>
         {({ errors, touched }) => (
           <Form className="">
             <div className="auth-form-group">
               <Field
-                type="email"
-                name="email"
+                name="username"
                 id="login-email"
-                className={errors.email && touched.email ? 'error' : null}
-                placeholder="Email"
+                className={errors.username && touched.username ? 'error' : null}
+                placeholder="Username"
+                onMouseDown={() => {
+                  setMessageError('');
+                }}
               />
-              <ErrorMessage className="auth-form-group__message-error" name="email" component="p" />
+              <ErrorMessage className="auth-form-group__message-error" name="username" component="p" />
             </div>
 
             <div className="auth-form-group">
@@ -43,13 +71,16 @@ const LoginPage: React.FC = () => {
                 id="login-password"
                 className={errors.password && touched.password ? 'error' : null}
                 placeholder="Password"
+                onMouseDown={() => {
+                  setMessageError('');
+                }}
               />
               <ErrorMessage className="auth-form-group__message-error" name="password" component="p" />
             </div>
 
             <div>
-              <Button type="submit" className="auth-form__button auth-form__button--submit" isLoading={false}>
-                <span>SIGN IN</span>
+              <Button type="submit" className="auth-form__button auth-form__button--submit" isLoading={loading}>
+                <span>&nbsp;SIGN IN</span>
               </Button>
             </div>
 
