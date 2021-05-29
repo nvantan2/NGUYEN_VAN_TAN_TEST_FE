@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import homeApi from '../../api/homeApi';
+import Pagination from '../../components/Pagination';
 import Table from '../../components/Table';
 import './HomePage.scss';
 
@@ -34,7 +35,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
-      <Table columns={COLUMNS} dataSource={dataUsers} loading={loading} />
+      <Table columns={COLUMNS} dataSource={dataUsers} loading={loading}>
+        <Pagination position="right" />
+      </Table>
     </div>
   );
 };
