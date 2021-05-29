@@ -1,7 +1,7 @@
 .pagination {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: -3px;
   margin-right: -3px;
 
@@ -22,6 +22,11 @@
     justify-content: center;
     background-color: #ddd;
     color: #000;
+
+    &.active {
+      background-color: #2d4278;
+      color: #fff;
+    }
 
     &:disabled {
       cursor: not-allowed;

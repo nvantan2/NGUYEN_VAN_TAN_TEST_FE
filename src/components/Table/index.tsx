@@ -44,8 +44,8 @@ const Table: React.FC<ITable> = ({ columns, dataSource, loading, children }) => 
             ))}
           </tbody>
         </table>
-        {children}
       </div>
+      {children}
     </div>
   );
 };

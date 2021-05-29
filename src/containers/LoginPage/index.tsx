@@ -20,7 +20,7 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (values: IDataLogin, actions: FormikHelpers<IDataLogin>) => {
     try {
-      // setLoading(true);
+      setLoading(true);
       const response = await authApi.login({ username: values.username, password: values.password });
       if (response.data) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
