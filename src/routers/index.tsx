@@ -6,12 +6,12 @@ import HomePage from '../containers/HomePage';
 import LoginPage from '../containers/LoginPage';
 import NotFoundPage from '../containers/NotFoundPage';
 import RegisterPage from '../containers/RegisterPage';
+import PrivateRoute from './PrivateRoute';
 
 const Routers: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={HomePage} />
         <Route
           path="/login"
           render={() => (
@@ -28,6 +28,7 @@ const Routers: React.FC = () => {
             </WrapperFormAuth>
           )}
         />
+        <PrivateRoute path="/" component={HomePage} exact />
         <Route component={NotFoundPage} />
       </Switch>
     </Router>

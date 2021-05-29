@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import HeaderFormAuth from '../../components/Auth/HeaderForm';
 import Button from '../../components/Button';
@@ -20,13 +20,14 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = async (values: IDataLogin, actions: FormikHelpers<IDataLogin>) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const response = await authApi.login({ username: values.username, password: values.password });
       if (response.data) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         localStorage.setItem('access_token', response.data.token);
         actions.resetForm();
         history.push('/');
+        return;
       }
       setLoading(false);
       setMessageError('Invalid username or password.');
@@ -39,6 +40,7 @@ const LoginPage: React.FC = () => {
 
   const initialValues: IDataLogin = { username: '', password: '' };
 
+  if (localStorage.getItem('access_token')) return <Redirect to="/" />;
   return (
     <div>
       <HeaderFormAuth title="Hello! let's get started" description="Sign in to continue" />
