@@ -1,0 +1,36 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: -3px;
+  margin-right: -3px;
+
+  &__per-page {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ddd;
+    color: #000;
+
+    &.active {
+      background-color: #2d4278;
+      color: #fff;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}

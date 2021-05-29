@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import HeaderFormAuth from '../../components/Auth/HeaderForm';
 import Button from '../../components/Button';
@@ -15,6 +15,8 @@ const LogInSchema = Yup.object().shape({
 
 const RegisterPage: React.FC = () => {
   const handleSubmit = () => {};
+
+  if (localStorage.getItem('access_token')) return <Redirect to="/" />;
   return (
     <div>
       <HeaderFormAuth title="New here?" description="Signing up is easy. It only takes a few steps" />
