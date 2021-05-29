@@ -24,6 +24,14 @@ const Pagination: React.FC<IPagination> = ({ position }) => {
 
   return (
     <div className="pagination" style={{ justifyContent: positionPagination }}>
+      <div className="pagination__per-page">
+        <p>Per page:</p>
+        <select defaultValue="15">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </div>
       <button type="button" title="Previous" disabled>
         {'<'}
       </button>
