@@ -2,7 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const axiosClient = axios.create({
-  baseURL: 'http://swagger-demo.s3-website-ap-southeast-1.amazonaws.com/UseAngular/ReactJS/VueJS',
+  baseURL: 'https://cyb06ylby6.execute-api.ap-southeast-1.amazonaws.com/v1',
   headers: {
     'content-type': 'application/json',
   },
@@ -34,3 +34,5 @@ axiosClient.interceptors.request.use(async (config) => {
 
   return config;
 });
+
+export default axiosClient;

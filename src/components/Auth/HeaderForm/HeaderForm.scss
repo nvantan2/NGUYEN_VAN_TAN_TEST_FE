@@ -1,0 +1,21 @@
+.header-form {
+  &__logo {
+    margin-bottom: 2rem;
+    img {
+      width: 150px;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+  }
+
+  &__description {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+}
